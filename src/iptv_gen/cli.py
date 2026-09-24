@@ -5,12 +5,14 @@ import logging
 import sys
 from pathlib import Path
 
+from .alias import load_alias_map
 from .check import probe_many
 from .collect import collect
 from .config import AppConfig
 from .generate import write_outputs
 from .normalize import group_channels, sort_channels
 from .rank import build_ranked_items
+from .template import apply_template, load_template
 
 
 def _setup_logging(verbose: bool) -> None:
@@ -19,6 +21,18 @@ def _setup_logging(verbose: bool) -> None:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
         datefmt="%H:%M:%S",
     )
+
+
+def _load_catalog(cfg: AppConfig) -> tuple[dict[str, str], list]:
+    alias_map = load_alias_map(cfg.alias_file if cfg.open_alias else None)
+    template = load_template(cfg.template_file if cfg.open_template else None)
+    if alias_map:
+        logging.info("别名表：%d 条映射", len(alias_map))
+    if template:
+        logging.info("模板：%d 个频道（仅导出模板内频道）", len(template))
+    else:
+        logging.info("模板：未启用或为空，导出全部频道")
+    return alias_map, template
 
 
 def _apply_limit(streams: list, limit: int) -> list:
@@ -44,8 +58,14 @@ def cmd_run(cfg: AppConfig, limit: int = 0) -> int:
         logging.error("未采集到任何频道流。请在 sources/remote.txt 或 sources/local/ 放入 M3U。")
         return 1
     streams = _apply_limit(streams, limit)
-    channels = sort_channels(group_channels(streams))
+    alias_map, template = _load_catalog(cfg)
+    channels = sort_channels(group_channels(streams, alias_map=alias_map))
     logging.info("归一化后频道数：%d", len(channels))
+    channels = apply_template(channels, template, alias_map)
+    logging.info("模板筛选后频道数：%d", len(channels))
+    if not channels:
+        logging.error("模板筛选后为空。检查 config/template.txt 或关闭 open_template。")
+        return 1
     probes = probe_many(streams, cfg.check)
     items = build_ranked_items(channels, probes, cfg.rank)
     paths = write_outputs(cfg, items, probes)
@@ -58,8 +78,10 @@ def cmd_run(cfg: AppConfig, limit: int = 0) -> int:
 
 def cmd_collect(cfg: AppConfig) -> int:
     streams = collect(cfg)
-    channels = sort_channels(group_channels(streams))
-    print(f"采集流 {len(streams)} 条 → 频道 {len(channels)} 个")
+    alias_map, template = _load_catalog(cfg)
+    channels = sort_channels(group_channels(streams, alias_map=alias_map))
+    channels = apply_template(channels, template, alias_map)
+    print(f"采集流 {len(streams)} 条 → 频道 {len(channels)} 个（含别名/模板）")
     for ch in channels[:30]:
         print(f"  [{ch.group}] {ch.name} ({len(ch.streams)} 源)")
     if len(channels) > 30:

@@ -9,6 +9,8 @@
 | 模块 | 能力 |
 |------|------|
 | 采集 `collect` | 拉取 `sources/remote.txt` 订阅 + 读取 `sources/local/*.m3u\|txt` |
+| 别名 `alias` | `config/alias.txt` 把 CCTV1 / CCTV-1 / 中央一台 等收成一台 |
+| 模板 `template` | `config/template.txt` 只导出关心的频道，并按模板顺序排列 |
 | 归一化 `normalize` | 频道名去清晰度后缀、CCTV 编号统一、按 `group-title` 分组 |
 | 检测 `check` | HTTP 连通、延迟、采样下载速率；HLS master 解析分辨率；可选 `ffprobe` 精测 |
 | 排序 `rank` | 综合得分：连通 > 分辨率 > 速率 > 延迟 > 码率（权重可配） |
@@ -42,6 +44,8 @@ python -m iptv_gen -c config/config.json --limit 50 run
 ```
 iptv-gen/
 ├── config/config.json      # 超时、并发、排序权重、阈值
+├── config/alias.txt        # 频道别名（同台多写法合并）
+├── config/template.txt     # 导出模板（频道清单 + 顺序 + 分组）
 ├── sources/remote.txt      # 远程 M3U 订阅（一行一个）
 ├── sources/local/          # 自编 / 本地 M3U、天马 txt
 ├── examples/               # 示例播放列表
@@ -57,6 +61,32 @@ iptv-gen/
 - `rank.sort_by`：`score` | `resolution` | `speed` | `latency`
 - `rank.max_per_channel`：每频道导出几条最优源
 - `rank.min_resolution_height` / `min_speed_mbps` / `max_latency_ms`：质量门槛
+- `open_alias` / `open_template`：是否启用别名表 / 导出模板
+
+### 别名表 `config/alias.txt`
+
+一行一个标准频道，逗号（或 `|`）分隔别名；第一个名字是导出显示名：
+
+```
+CCTV1,CCTV-1,CCTV1综合,中央一台
+湖南卫视|湖南卫视HD|湖南台
+```
+
+匹配前会做归一化（去 HD/高清、CCTV-1→CCTV1 等），因此别名可写得简短。
+
+### 导出模板 `config/template.txt`
+
+只导出列表中的频道，并按文件顺序排序（天马 `#genre#` 分组）：
+
+```
+央视,#genre#
+CCTV1
+CCTV2
+卫视,#genre#
+湖南卫视
+```
+
+文件为空或不存在、或 `open_template=false` 时导出全部频道。
 
 ## 检测与排序逻辑（雏形）
 

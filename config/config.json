@@ -4,10 +4,14 @@
   "output_m3u": "iptv-ranked.m3u",
   "output_txt": "iptv-ranked.txt",
   "output_report": "check-report.json",
+  "open_alias": true,
+  "open_template": true,
   "paths": {
     "remote_sources_file": "sources/remote.txt",
     "local_sources_dir": "sources/local",
-    "output_dir": "output"
+    "output_dir": "output",
+    "alias_file": "config/alias.txt",
+    "template_file": "config/template.txt"
   },
   "check": {
     "timeout_sec": 5.0,

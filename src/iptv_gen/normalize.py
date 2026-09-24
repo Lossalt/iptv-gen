@@ -50,12 +50,19 @@ def normalize_name(name: str) -> str:
     return s or name.strip()
 
 
-def group_channels(streams: list[Stream], default_group: str = "未分组") -> list[Channel]:
-    """按归一化频道名合并多条流。"""
+def group_channels(
+    streams: list[Stream],
+    default_group: str = "未分组",
+    alias_map: dict[str, str] | None = None,
+) -> list[Channel]:
+    """按归一化频道名（可叠加别名表）合并多条流。"""
+    # 延迟 import，避免与 alias 模块循环
+    from .alias import resolve_name
+
     buckets: dict[str, Channel] = {}
     order: list[str] = []
     for st in streams:
-        key = normalize_name(st.name)
+        key = resolve_name(st.name, alias_map) if alias_map else normalize_name(st.name)
         if not key:
             key = st.name or st.url
         if key not in buckets:

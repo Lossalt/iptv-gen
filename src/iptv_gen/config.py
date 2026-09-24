@@ -43,11 +43,15 @@ class AppConfig:
     remote_sources_file: Path
     local_sources_dir: Path
     output_dir: Path
+    alias_file: Path | None = None
+    template_file: Path | None = None
     output_m3u: str = "iptv-ranked.m3u"
     output_txt: str = "iptv-ranked.txt"
     output_report: str = "check-report.json"
     epg_url: str = "https://epg.112114.xyz/pp.xml"
     fetch_timeout_sec: float = 15.0
+    open_alias: bool = True
+    open_template: bool = True
     check: CheckConfig = field(default_factory=CheckConfig)
     rank: RankConfig = field(default_factory=RankConfig)
 
@@ -62,16 +66,22 @@ class AppConfig:
         check = CheckConfig(**data.get("check", {}))
         rank = RankConfig(**data.get("rank", {}))
         paths = data.get("paths", {})
+        alias_rel = paths.get("alias_file", "config/alias.txt")
+        template_rel = paths.get("template_file", "config/template.txt")
         return AppConfig(
             project_root=root,
             remote_sources_file=root / paths.get("remote_sources_file", "sources/remote.txt"),
             local_sources_dir=root / paths.get("local_sources_dir", "sources/local"),
             output_dir=root / paths.get("output_dir", "output"),
+            alias_file=root / alias_rel,
+            template_file=root / template_rel,
             output_m3u=data.get("output_m3u", "iptv-ranked.m3u"),
             output_txt=data.get("output_txt", "iptv-ranked.txt"),
             output_report=data.get("output_report", "check-report.json"),
             epg_url=data.get("epg_url", "https://epg.112114.xyz/pp.xml"),
             fetch_timeout_sec=float(data.get("fetch_timeout_sec", 15.0)),
+            open_alias=bool(data.get("open_alias", True)),
+            open_template=bool(data.get("open_template", True)),
             check=check,
             rank=rank,
         )

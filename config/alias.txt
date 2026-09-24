@@ -1,0 +1,58 @@
+# 频道别名表：一行一个标准频道，逗号（或 |）分隔别名。
+# 第一个名称为导出时的显示名；匹配前会做归一化（去 HD/高清、CCTV-1→CCTV1 等）。
+# 以 # 开头为注释。
+
+# —— 央视 ——
+CCTV1,CCTV-1,CCTV1综合,CCTV-1 综合,CCTV1高清,CCTV-1 综合高清,中央一台,中央1台
+CCTV2,CCTV-2,CCTV2财经,CCTV-2 财经,CCTV2高清,中央二台,中央2台
+CCTV3,CCTV-3,CCTV3综艺,CCTV-3 综艺,CCTV3高清,中央三台
+CCTV4,CCTV-4,CCTV4中文国际,CCTV-4 中文国际,CCTV4高清,中央四台
+CCTV5,CCTV-5,CCTV5体育,CCTV-5 体育,CCTV5高清,中央五台
+CCTV5+,CCTV5+,CCTV-5+,CCTV5+ 体育赛事,CCTV-5+ 体育赛事,CCTV5PLUS
+CCTV6,CCTV-6,CCTV6电影,CCTV-6 电影,CCTV6高清,中央六台
+CCTV7,CCTV-7,CCTV7国防军事,CCTV-7 国防军事,CCTV7高清,中央七台
+CCTV8,CCTV-8,CCTV8电视剧,CCTV-8 电视剧,CCTV8高清,中央八台
+CCTV9,CCTV-9,CCTV9纪录,CCTV-9 纪录,CCTV9高清,中央九台
+CCTV10,CCTV-10,CCTV10科教,CCTV-10 科教,CCTV10高清,中央十台
+CCTV11,CCTV-11,CCTV11戏曲,CCTV-11 戏曲,CCTV11高清,中央十一台
+CCTV12,CCTV-12,CCTV12社会与法,CCTV-12 社会与法,CCTV12高清,中央十二台
+CCTV13,CCTV-13,CCTV13新闻,CCTV-13 新闻,CCTV13高清,新闻频道
+CCTV14,CCTV-14,CCTV14少儿,CCTV-14 少儿,CCTV14高清,少儿频道
+CCTV15,CCTV-15,CCTV15音乐,CCTV-15 音乐,CCTV15高清
+CCTV16,CCTV-16,CCTV16奥林匹克,CCTV-16 奥林匹克,CCTV16高清
+CCTV17,CCTV-17,CCTV17农业农村,CCTV-17 农业农村,CCTV17高清
+
+# —— 卫视（部分）——
+湖南卫视,湖南卫视HD,湖南高清卫视,湖南台
+江苏卫视,江苏卫视HD,江苏高清卫视,江苏台
+浙江卫视,浙江卫视HD,浙江高清卫视,浙江台
+东方卫视,东方卫视HD,上海卫视,上海东方卫视
+北京卫视,北京卫视HD,北京台
+广东卫视,广东卫视HD,广东台
+深圳卫视,深圳卫视HD
+山东卫视,山东卫视HD,山东台
+安徽卫视,安徽卫视HD,安徽台
+天津卫视,天津卫视HD,天津台
+湖北卫视,湖北卫视HD,湖北台
+辽宁卫视,辽宁卫视HD,辽宁台
+江西卫视,江西卫视HD,江西台
+广西卫视,广西卫视HD,广西台
+东南卫视,东南卫视HD,福建卫视
+四川卫视,四川卫视HD,四川台
+重庆卫视,重庆卫视HD,重庆台
+黑龙江卫视,黑龙江卫视HD
+吉林卫视,吉林卫视HD
+河北卫视,河北卫视HD
+河南卫视,河南卫视HD
+山西卫视,山西卫视HD
+陕西卫视,陕西卫视HD
+甘肃卫视,甘肃卫视HD
+云南卫视,云南卫视HD
+贵州卫视,贵州卫视HD
+海南卫视,海南卫视HD,旅游卫视
+内蒙古卫视,内蒙古卫视HD
+宁夏卫视,宁夏卫视HD
+新疆卫视,新疆卫视HD
+青海卫视,青海卫视HD
+西藏卫视,西藏卫视HD
+兵团卫视,兵团卫视HD
