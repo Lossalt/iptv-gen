@@ -1,0 +1,4 @@
+# 可选：安装后可用 python -m pytest tests
+# 无依赖也可跑：python tests/run_tests.py
+pytest>=8.0
+

@@ -1,0 +1,13 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="cctv1" tvg-logo="https://example.com/cctv1.png" group-title="央视",CCTV-1 综合
+https://example.invalid/live/cctv1/index.m3u8
+#EXTINF:-1 tvg-id="cctv1" group-title="高清",CCTV1高清
+https://example.invalid/live/cctv1_hd.m3u8
+#EXTINF:-1 group-title="卫视",湖南卫视
+https://example.invalid/live/hunan.m3u8
+#EXTINF:-1 group-title="卫视",湖南卫视HD
+https://example.invalid/live/hunan_hd.m3u8
+#EXTINF:-1 group-title="体育",CCTV-5 体育
+https://example.invalid/live/cctv5.m3u8
+# 天马 txt 也可以混放：
+# 北京卫视,https://example.invalid/live/btv.m3u8

@@ -1,0 +1,37 @@
+# 远程 M3U / 订阅源列表（一行一个）
+# 以 # 开头为注释。可按需增删；国内网络可配合 CDN 镜像前缀。
+#
+# 思路参考：
+#   joevess/IPTV      —— 多源整合，按分辨率/速度择优
+#   Guovin/iptv-api   —— 采集 + 可用性 + 测速筛选 + 按 speed/delay/resolution 排序
+#   ngo5/IPTV         —— 社区源清单（下列若干来自其整理表）
+#   dongyubin/IPTV    —— 人工策展直播源目录
+#
+# 注意：本工具只负责「检测 / 排序 / 生成」，请自行确认源的合法性与可用性。
+
+# —— 综合 / 央视卫视 ——
+# joevess 仓库根目录的 home.m3u8 / iptv.m3u8 目前可能是空壳（仅 #EXTM3U），
+# 可改用其 sources/ 目录下的 *_sources.m3u8，或注释掉。
+# https://raw.githubusercontent.com/joevess/IPTV/main/home.m3u8
+# https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8
+https://raw.githubusercontent.com/joevess/IPTV/main/sources/home_sources.m3u8
+https://raw.githubusercontent.com/joevess/IPTV/main/sources/iptv_sources.m3u8
+
+# —— Guovin iptv-api 结果（IPv4/IPv6）——
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u
+
+# —— 社区整理 ——
+https://live.fanmingming.cn/tv/m3u/ipv6.m3u
+https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/IPTV.m3u
+https://live.zbds.org/tv/iptv4.m3u
+https://live.zbds.org/tv/iptv6.m3u
+https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8
+https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv4.m3u
+https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv6.m3u
+https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u
+https://raw.githubusercontent.com/BurningC4/Chinese-IPTV/master/TV-IPV4.m3u
+https://raw.githubusercontent.com/zwc456baby/iptv_alive/refs/heads/master/live.m3u
+
+# YanG Gather（若可用）
+# https://tv.iill.top/m3u/Gather

@@ -1,0 +1,34 @@
+{
+  "epg_url": "https://epg.112114.xyz/pp.xml",
+  "fetch_timeout_sec": 15,
+  "output_m3u": "iptv-ranked.m3u",
+  "output_txt": "iptv-ranked.txt",
+  "output_report": "check-report.json",
+  "paths": {
+    "remote_sources_file": "sources/remote.txt",
+    "local_sources_dir": "sources/local",
+    "output_dir": "output"
+  },
+  "check": {
+    "timeout_sec": 5.0,
+    "connect_timeout_sec": 3.0,
+    "concurrency": 32,
+    "download_bytes": 262144,
+    "enable_ffprobe": true,
+    "ffprobe_timeout_sec": 6.0,
+    "user_agent": "Mozilla/5.0 (Linux; Android 12; TV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  },
+  "rank": {
+    "w_online": 40,
+    "w_resolution": 25,
+    "w_speed": 20,
+    "w_latency": 10,
+    "w_bitrate": 5,
+    "min_resolution_height": 360,
+    "min_speed_mbps": 0.3,
+    "max_latency_ms": 4000,
+    "max_per_channel": 5,
+    "include_dead": false,
+    "sort_by": "score"
+  }
+}
